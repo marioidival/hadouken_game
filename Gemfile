@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem 'gosu', '~> 0.7.50'
 
 group :development do
-  gem 'guard-minitest'
+  gem 'guard-rspec'
 end
 
 gemspec

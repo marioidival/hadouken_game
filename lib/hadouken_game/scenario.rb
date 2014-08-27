@@ -1,4 +1,2 @@
-module HadoukenGame
-  class Scenario
-  end
+class Scenario
 end
