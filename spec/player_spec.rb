@@ -6,17 +6,33 @@ describe Player do
 
   describe "#escolhendo personagem" do
     context "#character deve ser um array" do
-      it { expect(player.character).to be_a(Array) }
+      it { expect(player.character).to be_a(Hash) }
     end
   end
 
   describe "#push_hadouken" do
     context "#personagem comum" do
-      it { expect(player.push_hadouken).to eq(1) }
+      def modify_player
+        player.character = {name: "marisa", hit_value: 1, image: "imagem.png"}
+        player.push_hadouken
+      end
+      it { expect(modify_player).to eq(1) }
     end
 
-    context "#personagem alterado" do
-      xit { expect(player.push_hadouken).to eq(5) }
+    context "#personagem forte" do
+      def modify_player
+        player.character = {name: "mateus", hit_value: 5, image: "imagem.png"}
+        player.push_hadouken
+      end
+      it { expect(modify_player).to eq(5) }
+    end
+
+    context "#personagem fraco" do
+      def modify_player
+        player.character = {name: "julian", hit_value: false, image: "imagem.png"}
+        player.push_hadouken
+      end
+      it { expect(modify_player).to eq(false) }
     end
   end
 
