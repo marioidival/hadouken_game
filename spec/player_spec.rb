@@ -11,6 +11,19 @@ describe Player do
     end
   end
 
+  describe "#2 jogadores" do
+    subject(:one) { Player.new }
+    subject(:second) { Player.new window=nil, is_second=true }
+
+    context "player 1" do
+      it { expect(one.player2?).to be_falsy }
+    end
+
+    context "player 2" do
+      it { expect(second.player2?).to be_truthy }
+    end
+  end
+
   describe "#push_hadouken" do
     subject(:player) { Player.new }
 
