@@ -3,41 +3,31 @@ require 'gosu'
 class Player
   attr_accessor :type_player, :character
 
-  def initialize
+  def initialize window = nil
     @character = choice_character
+    @name = @character[:name].capitalize
+    @image = @character[:image]
   end
 
   def push_hadouken
-    if @type_player
-      5
-    else
-      1
-    end
+    @character[:hit_value]
   end
 
   def characters
-    {
-      mateus:
-        {special: true, image: "imagem.png"},
-      marisa:
-        {special: false, image: "imagem.png"},
-      julian:
-        {special: "argentino", image: "imagem.png"},
-      italo:
-        {special: true, image: "imagem.png"},
-      eduardo:
-        {special: false, image: "imagem.png"},
-      arisson:
-        {special: "silence", image: "imagem.png"},
-      luciano:
-        {special: false, image: "imagem.png"},
-      helen:
-        {special: false, image: "imagem.png"}
-    }
+    [
+        {name: "mateus", hit_value: 5, image: "imagem.png"},
+        {name: "marisa", hit_value: 1, image: "imagem.png"},
+        {name: "julian", hit_value: false, image: "imagem.png"},
+        {name: "italo", hit_value: 5, image: "imagem.png"},
+        {name: "helen", hit_value: 1, image: "imagem.png"},
+        {name: "arisson", hit_value: false, image: "imagem.png"},
+        {name: "eduardo", hit_value: 1, image: "imagem.png"},
+        {name: "debora", hit_value: 1, image: "imagem.png"}
+    ]
   end
 
   def choice_character
-    characters.to_a.sample()
+    characters[rand(characters.size)]
   end
 
 end
