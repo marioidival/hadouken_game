@@ -24,13 +24,15 @@ class Player
     # @return Array
     [
         {name: "italo", hit_value: 5, image: "imagem.png"},
-        {name: "helen", hit_value: 1, image: "imagem.png"},
-        {name: "mateus", hit_value: 5, image: "imagem.png"},
+        {name: "helen", hit_value: 1, image: "media/helen.jpg"},
+        {name: "mateus", hit_value: 5, image: "media/mateus.jpg"},
         {name: "marisa", hit_value: 1, image: "imagem.png"},
-        {name: "julian", hit_value: false, image: "imagem.png"},
-        {name: "debora", hit_value: 1, image: "imagem.png"},
+        {name: "julian", hit_value: false, image: "media/julian.jpg"},
+        {name: "debora", hit_value: 1, image: "media/debora.jpg"},
         {name: "arisson", hit_value: false, image: "imagem.png"},
         {name: "eduardo", hit_value: 1, image: "imagem.png"},
+        {name: "luciano", hit_value: 1, image: "media/luciano.jpg"},
+        {name: "wendel", hit_value: 1, image: "noimage.png"},
     ]
   end
 
