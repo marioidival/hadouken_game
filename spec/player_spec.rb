@@ -2,15 +2,18 @@ require 'spec_helper'
 
 describe Player do
 
-  let(:player) { Player.new }
 
   describe "#escolhendo personagem" do
+    subject(:player) { Player.new }
+
     context "#character deve ser um array" do
       it { expect(player.character).to be_a(Hash) }
     end
   end
 
   describe "#push_hadouken" do
+    subject(:player) { Player.new }
+
     context "personagem comum" do
       def modify_player
         player.character = {name: "marisa", hit_value: 1, image: "imagem.png"}
