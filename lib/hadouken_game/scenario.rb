@@ -1,5 +1,5 @@
 class Scenario
-  attr_accessor :random_background
+  attr_writer :random_background
   def initialize
     @scenario = random_background
   end
