@@ -11,7 +11,7 @@ describe Player do
   end
 
   describe "#push_hadouken" do
-    context "#personagem comum" do
+    context "personagem comum" do
       def modify_player
         player.character = {name: "marisa", hit_value: 1, image: "imagem.png"}
         player.push_hadouken
@@ -19,7 +19,7 @@ describe Player do
       it { expect(modify_player).to eq(1) }
     end
 
-    context "#personagem forte" do
+    context "personagem forte" do
       def modify_player
         player.character = {name: "mateus", hit_value: 5, image: "imagem.png"}
         player.push_hadouken
@@ -27,7 +27,7 @@ describe Player do
       it { expect(modify_player).to eq(5) }
     end
 
-    context "#personagem fraco" do
+    context "personagem fraco" do
       def modify_player
         player.character = {name: "julian", hit_value: false, image: "imagem.png"}
         player.push_hadouken
