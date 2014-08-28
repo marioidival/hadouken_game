@@ -13,7 +13,7 @@ class GameWindow < Gosu::Window
 
 
   def draw
-    @background.draw # Desenhando o cenario
+    @background.draw(0, 0, 0) # Desenhando o cenario
 
   end
 end
