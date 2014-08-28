@@ -1,5 +1,5 @@
 class Scenario
-  attr_writer :random_background
+  attr_reader :scenario
   def initialize
     @scenario = random_background
   end
@@ -7,10 +7,9 @@ class Scenario
   def random_background
     # Retorna um cenario aleatorio
     scenarios = [
-      '/media/scenario/image.png',
-      '/media/scenario/image.png',
-      '/media/scenario/image.png',
-      '/media/scenario/image.png',
+      'hadouken_game/media/scenarios/hienstage.jpg',
+      'hadouken_game/media/scenarios/island.png',
+      'hadouken_game/media/scenarios/1166.gif',
     ]
 
     scenarios[rand(scenarios.size)]
