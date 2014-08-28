@@ -3,15 +3,20 @@ require 'gosu'
 class Player
   attr_accessor :character
 
-  def initialize window = nil # -> To test
+  def initialize window = nil, is_second = false
     @character = choice_character
     @name = @character[:name].capitalize
     @image = @character[:image]
+    @is_second = is_second
 
     if window
       @player_image = Gosu::Image.new window, @image, false
     end
 
+  end
+
+  def player2?
+    @is_second
   end
 
   def push_hadouken
@@ -42,4 +47,7 @@ class Player
     characters[rand(characters.size)]
   end
 
+  # Gosu Methods
+  def draw
+  end
 end
