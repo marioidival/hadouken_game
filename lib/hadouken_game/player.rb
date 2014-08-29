@@ -10,7 +10,13 @@ class Player
     @is_second = is_second
 
     if window
-      @player_image = Gosu::Image.new window, @image, false
+      @window = window
+      @player_image = Gosu::Image.new @window, @image, false
+
+      # Definindo variaveis de posicoes
+      @center_x = @window.width / 2
+      @center_y = @window.height / 2
+
     end
 
   end
@@ -49,6 +55,8 @@ class Player
 
   # Gosu Methods
   def draw
+    @player_image.draw @center_x, @center_y, 1 unless player2?
+    @player_image.draw @center_x, @center_y, 1, -1 if player2?
   end
 
 end
