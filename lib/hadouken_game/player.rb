@@ -55,8 +55,8 @@ class Player
 
   # Gosu Methods
   def draw
-    @player_image.draw @center_x, @center_y, 1 unless player2?
-    @player_image.draw @center_x, @center_y, 1, -1 if player2?
+    @player_image.draw @center_x - @player_image.width*4, @center_y, 1 unless player2?
+    @player_image.draw @center_x + @player_image.width*4, @center_y, 1, -1 if player2?
   end
 
 end
