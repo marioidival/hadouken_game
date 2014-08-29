@@ -9,7 +9,6 @@ class Scenario
     scenarios = [
       'hadouken_game/media/scenarios/hienstage.jpg',
       'hadouken_game/media/scenarios/island.png',
-      'hadouken_game/media/scenarios/1166.gif',
     ]
 
     scenarios[rand(scenarios.size)]
