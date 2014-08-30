@@ -1,5 +1,6 @@
 class Scenario
   attr_reader :scenario
+
   def initialize
     @scenario = random_background
   end
