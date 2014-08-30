@@ -5,7 +5,7 @@ class Player
 
   def initialize window = nil, is_second = false
     @character = choice_character
-    @name = @character[:name].capitalize
+    @name = @character[:name]
     @image = @character[:image]
     @is_second = is_second
 
