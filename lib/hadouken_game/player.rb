@@ -17,6 +17,7 @@ class Player
       @center_x = @window.width / 2
       @center_y = @window.height / 2
 
+      @player_x = @is_second ? @center_x + @player_image.width * 4 : @center_x - @player_image.width * 4
     end
 
   end
@@ -34,15 +35,15 @@ class Player
     # Retorna uma lista com os possiveis personagens do jogo
     # @return Array
     [
-   #     {name: "italo", hit_value: 5, image: "imagem.png"},
         {name: "helen", hit_value: 1, image: "hadouken_game/media/helen.jpg"},
         {name: "mateus", hit_value: 5, image: "hadouken_game/media/mateus.jpg"},
-   #     {name: "marisa", hit_value: 1, image: "imagem.png"},
         {name: "julian", hit_value: false, image: "hadouken_game/media/julian.jpg"},
         {name: "debora", hit_value: 1, image: "hadouken_game/media/debora.jpg"},
+        {name: "luciano", hit_value: 1, image: "hadouken_game/media/luciano.jpg"},
+   #     {name: "marisa", hit_value: 1, image: "imagem.png"},
+   #     {name: "italo", hit_value: 5, image: "imagem.png"},
    #     {name: "arisson", hit_value: false, image: "imagem.png"},
    #     {name: "eduardo", hit_value: 1, image: "imagem.png"},
-        {name: "luciano", hit_value: 1, image: "hadouken_game/media/luciano.jpg"},
    #     {name: "wendel", hit_value: 1, image: "noimage.png"},
     ]
   end
@@ -55,8 +56,8 @@ class Player
 
   # Gosu Methods
   def draw
-    @player_image.draw @center_x - @player_image.width*4, @center_y, 1 unless player2?
-    @player_image.draw @center_x + @player_image.width*4, @center_y, 1, -1 if player2?
+    @player_image.draw @player_x, @center_y, 1 unless player2?
+    @player_image.draw @player_x, @center_y, 1, -1 if player2?
   end
 
 end
