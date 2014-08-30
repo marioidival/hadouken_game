@@ -14,11 +14,15 @@ class GameWindow < Gosu::Window
 
     scenario = Scenario.new
     @background = Gosu::Image.new self, scenario.scenario, true
+    @player = Player.new self
+    @player2 = Player.new self, true
   end
 
 
   def draw
     @background.draw(0, 0, 0) # Desenhando o cenario
+    @player.draw
+    @player2.draw
   end
 
   def button_down id
