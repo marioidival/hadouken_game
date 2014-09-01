@@ -39,4 +39,8 @@ class Hadouken
     }
     images[player_name]
   end
+
+  def move_hadouken
+    # Movimentacao do hadouken a cada clique
+  end
 end
