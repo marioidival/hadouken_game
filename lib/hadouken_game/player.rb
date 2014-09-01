@@ -1,12 +1,12 @@
 require 'gosu'
 
 class Player
-  attr_accessor :character
+  attr_accessor :character, :name, :player_x
 
   def initialize window = nil, is_second = false
     @character = choice_character
-    @name = @character[:name]
-    @image = @character[:image]
+    @name = @character["name"]
+    @image = @character["image"]
     @is_second = is_second
 
     if window
@@ -35,16 +35,16 @@ class Player
     # Retorna uma lista com os possiveis personagens do jogo
     # @return Array
     [
-        {name: "helen", hit_value: 1, image: "hadouken_game/media/helen.jpg"},
-        {name: "mateus", hit_value: 5, image: "hadouken_game/media/mateus.jpg"},
-        {name: "julian", hit_value: false, image: "hadouken_game/media/julian.jpg"},
-        {name: "debora", hit_value: 1, image: "hadouken_game/media/debora.jpg"},
-        {name: "luciano", hit_value: 1, image: "hadouken_game/media/luciano.jpg"},
-   #     {name: "marisa", hit_value: 1, image: "imagem.png"},
-   #     {name: "italo", hit_value: 5, image: "imagem.png"},
-   #     {name: "arisson", hit_value: false, image: "imagem.png"},
-   #     {name: "eduardo", hit_value: 1, image: "imagem.png"},
-   #     {name: "wendel", hit_value: 1, image: "noimage.png"},
+        {"name"=> "helen", "hit_value" => 1, "image" => "hadouken_game/media/helen.jpg"},
+        {"name"=> "mateus", "hit_value" => 5, "image" => "hadouken_game/media/mateus.jpg"},
+        {"name"=> "julian", "hit_value" => false, "image" => "hadouken_game/media/julian.jpg"},
+        {"name"=> "debora", "hit_value" => 1, "image" => "hadouken_game/media/debora.jpg"},
+        {"name"=> "luciano", "hit_value" => 1, "image" => "hadouken_game/media/luciano.jpg"},
+   #     {"name"=> "marisa", "hit_value" => 1, "image" => "imagem.png"},
+   #     {"name"=> "italo", "hit_value" => 5, "image" => "imagem.png"},
+   #     {"name"=> "arisson", "hit_value" => false, "image" => "imagem.png"},
+   #     {"name"=> "eduardo", "hit_value" => 1, "image" => "imagem.png"},
+   #     {"name"=> "wendel", "hit_value" => 1, "image" => "noimage.png"},
     ]
   end
 
