@@ -1,7 +1,7 @@
 class Hadouken
   attr_reader :images_hadouken
 
-  def initalize window=nil, player
+  def initialize window=nil, player
     @player = player
 
     if window
