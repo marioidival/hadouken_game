@@ -28,8 +28,7 @@ class Player
 
   def push_hadouken
     # Retorna o valor do 'click' do personagem
-    # FIXME: Hit Value randomico
-    @character[:hit_value]
+    @character["hit_value"]
   end
 
   def characters

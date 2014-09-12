@@ -7,19 +7,21 @@ class Hadouken
     if window
       @window = window
       @hadouken_img = Gosu::Image.new @window, images_hadouken(@player.name), false
+
+      @center_y = @window.height / 2
+      @mov = 130
     end
   end
 
   # Desenha o hadouken do personagem
   def draw_hadouken
-    @center_y = @window.height / 2
     # left
     @hadouken_img.draw(
-      @player.player_x - 130, @center_y, 1, -1
+      @player.player_x - @mov, @center_y, 1, -1
     ) if @player.player2?
     # right
     @hadouken_img.draw(
-      @player.player_x + 130, @center_y, 1
+      @player.player_x + @mov, @center_y, 1
     ) unless @player.player2?
   end
 
@@ -42,5 +44,14 @@ class Hadouken
 
   def move_hadouken
     # Movimentacao do hadouken a cada clique
+    @mov = @mov + (@player.push_hadouken * 30)
   end
+
+  def crush_hadouken
+  end
+
+  def draw
+    self.draw_hadouken
+  end
+
 end
