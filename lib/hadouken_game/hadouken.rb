@@ -1,5 +1,5 @@
 class Hadouken
-  attr_reader :images_hadouken
+  attr_reader :images_hadouken, :is_draw
 
   def initialize window=nil, player
     @player = player
@@ -11,6 +11,12 @@ class Hadouken
       @center_y = @window.height / 2
       @mov = 130
     end
+
+    @live = true
+  end
+
+  def is_draw?
+    @live
   end
 
   # Desenha o hadouken do personagem
@@ -44,7 +50,9 @@ class Hadouken
 
   def move_hadouken
     # Movimentacao do hadouken a cada clique
-    @mov = @mov + (@player.push_hadouken * 30)
+    if @player.push_hadouken
+      @mov = @mov + (@player.push_hadouken * 30)
+    end
   end
 
   def crush_hadouken
