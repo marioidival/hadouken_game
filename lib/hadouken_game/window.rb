@@ -4,6 +4,7 @@ require_relative 'hadouken'
 require_relative 'player'
 
 class GameWindow < Gosu::Window
+  @@format = [3, 1.0, 1.0, 0xffffff00]
   WIDTH = 1024
   HEIGHT = 771
 
@@ -22,6 +23,7 @@ class GameWindow < Gosu::Window
     @hadouken2 = Hadouken.new self, @player2
 
     @explosion = Gosu::Sample.new(self, 'hadouken_game/media/explosion.ogg')
+    @font = Gosu::Font.new self, Gosu::default_font_name, 40
   end
 
 
@@ -37,6 +39,14 @@ class GameWindow < Gosu::Window
     if @player2.push_hadouken
       @hadouken2.draw
     end
+
+    unless @player.down?
+      @font.draw "GAME OVER player1", 350, 50, *@@format
+    end
+
+    unless @player2.down?
+      @font.draw "GAME OVER player2", 350, 50, *@@format
+    end
   end
 
   def update
@@ -46,7 +56,7 @@ class GameWindow < Gosu::Window
   def playing
     dist_hadouken = Gosu::distance(@hadouken.center_x, @hadouken.center_y,
                                    @hadouken2.center_x, @hadouken2.center_y)
-    if dist_hadouken < 170 # Corrigir isso com o radius
+    if dist_hadouken < 170
       if @hadouken.hadouken_img and @hadouken2.hadouken_img
         @explosion.play
       end
@@ -71,12 +81,16 @@ class GameWindow < Gosu::Window
     close if id == Gosu::KbEscape
     if button_down? Gosu::KbQ
       @hadouken.move_hadouken if @hadouken.hadouken_img
-      @hadouken = Hadouken.new self, @player unless @hadouken.hadouken_img
+      if @player.down?
+        @hadouken = Hadouken.new self, @player unless @hadouken.hadouken_img
+      end
     end
 
     if button_down? Gosu::KbP
       @hadouken2.move_hadouken if @hadouken2.hadouken_img
-      @hadouken2 = Hadouken.new self, @player2 unless @hadouken2.hadouken_img
+      if @player2.down?
+        @hadouken2 = Hadouken.new self, @player2 unless @hadouken2.hadouken_img
+      end
     end
   end
 end
