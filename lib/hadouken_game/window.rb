@@ -20,13 +20,15 @@ class GameWindow < Gosu::Window
 
     @hadouken = Hadouken.new self, @player
     @hadouken2 = Hadouken.new self, @player2
+
+    @explosion = Gosu::Sample.new(self, 'hadouken_game/media/explosion.ogg')
   end
 
 
   def draw
     @background.draw(0, 0, 0) # Desenhando o cenario
-    @player.draw
-    @player2.draw
+    @player.draw if @player.down?
+    @player2.draw if @player2.down?
 
     if @player.push_hadouken
       @hadouken.draw
@@ -38,11 +40,43 @@ class GameWindow < Gosu::Window
   end
 
   def update
-    @hadouken.move_hadouken if button_down?(Gosu::KbQ)
-    @hadouken2.move_hadouken if button_down?(Gosu::KbP)
+    playing
+  end
+
+  def playing
+    dist_hadouken = Gosu::distance(@hadouken.center_x, @hadouken.center_y,
+                                   @hadouken2.center_x, @hadouken2.center_y)
+    if dist_hadouken < 170 # Corrigir isso com o radius
+      if @hadouken.hadouken_img and @hadouken2.hadouken_img
+        @explosion.play
+      end
+      @hadouken.die!
+      @hadouken2.die!
+    end
+
+    hadouken_player = Gosu::distance(@hadouken2.center_x, @hadouken2.center_y,
+                                     @player.player_x, @player.center_y)
+    hadouken_player2 = Gosu::distance(@hadouken.center_x, @hadouken.center_y,
+                                      @player2.player_x, @player2.center_y)
+    if hadouken_player < 170
+      @player.die!
+    end
+
+    if hadouken_player2 < 170
+      @player2.die!
+    end
   end
 
   def button_down id
     close if id == Gosu::KbEscape
+    if button_down? Gosu::KbQ
+      @hadouken.move_hadouken if @hadouken.hadouken_img
+      @hadouken = Hadouken.new self, @player unless @hadouken.hadouken_img
+    end
+
+    if button_down? Gosu::KbP
+      @hadouken2.move_hadouken if @hadouken2.hadouken_img
+      @hadouken2 = Hadouken.new self, @player2 unless @hadouken2.hadouken_img
+    end
   end
 end

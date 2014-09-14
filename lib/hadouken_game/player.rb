@@ -1,7 +1,7 @@
 require 'gosu'
 
 class Player
-  attr_accessor :character, :name, :player_x
+  attr_accessor :character, :name, :player_x, :center_y, :player_image
 
   def initialize window = nil, is_second = false
     @character = choice_character
@@ -18,6 +18,7 @@ class Player
       @center_y = @window.height / 2
 
       @player_x = @is_second ? @center_x + @player_image.width * 4 : @center_x - @player_image.width * 4
+      @live = true
     end
 
   end
@@ -28,7 +29,7 @@ class Player
 
   def push_hadouken
     # Retorna o valor do 'click' do personagem
-    @character["hit_value"]
+    @character['hit_value']
   end
 
   def characters
@@ -52,6 +53,19 @@ class Player
     # Retorna um personagem aleatorio
     # @return Hash
     characters[rand(characters.size)]
+  end
+
+  def die!
+    @center_y = 0
+    @center_x = 0
+    @player_x = 0
+    @player_image = nil
+
+    @live = false
+  end
+
+  def down?
+    @live
   end
 
   # Gosu Methods
