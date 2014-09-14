@@ -28,13 +28,21 @@ class GameWindow < Gosu::Window
     @player.draw
     @player2.draw
 
-    @hadouken.draw
-    @hadouken2.draw
+    if @player.push_hadouken
+      @hadouken.draw
+    end
+
+    if @player2.push_hadouken
+      @hadouken2.draw
+    end
+  end
+
+  def update
+    @hadouken.move_hadouken if button_down?(Gosu::KbQ)
+    @hadouken2.move_hadouken if button_down?(Gosu::KbP)
   end
 
   def button_down id
     close if id == Gosu::KbEscape
-    @hadouken.move_hadouken if id == Gosu::KbQ
-    @hadouken2.move_hadouken if id == Gosu::KbP
   end
 end
