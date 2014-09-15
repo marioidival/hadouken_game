@@ -56,7 +56,8 @@ class GameWindow < Gosu::Window
   def playing
     dist_hadouken = Gosu::distance(@hadouken.center_x, @hadouken.center_y,
                                    @hadouken2.center_x, @hadouken2.center_y)
-    if dist_hadouken < 170
+
+    if dist_hadouken < 170 and (@player.push_hadouken and @player2.push_hadouken)
       if @hadouken.hadouken_img and @hadouken2.hadouken_img
         @explosion.play
       end
