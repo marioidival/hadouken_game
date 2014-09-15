@@ -14,8 +14,10 @@ class GameWindow < Gosu::Window
     # Titulo da janela
     self.caption = "Hadouken Game"
 
+    # cria um novo cenario (aleatorio)
     scenario = Scenario.new
     @background = Gosu::Image.new self, scenario.scenario, true
+
     @player = Player.new self
     @player2 = Player.new self, true
 
@@ -33,9 +35,12 @@ class GameWindow < Gosu::Window
 
   def draw
     @background.draw(0, 0, 0) # Desenhando o cenario
+    # Desenha os personagens se eles estiverem vivos
     @player.draw if @player.down?
     @player2.draw if @player2.down?
 
+    # Se o personagem tiver algum valor valido no metodo `push_hadouken`
+    # Desenha o hadouken
     if @player.push_hadouken
       @hadouken.draw
     end
@@ -44,6 +49,8 @@ class GameWindow < Gosu::Window
       @hadouken2.draw
     end
 
+    # Quando o personagem estiver morto, desenha a mensagem de game over
+    # na tela
     unless @player.down?
       @font.draw "GAME OVER player1", 350, 50, *@@format
     end
@@ -58,21 +65,28 @@ class GameWindow < Gosu::Window
   end
 
   def playing
+    # Verifica a distancia dos 2 hadoukens no jogo
     dist_hadouken = Gosu::distance(@hadouken.center_x, @hadouken.center_y,
                                    @hadouken2.center_x, @hadouken2.center_y)
 
+    # Se a distancia for menor que 170 E os players tiver valores validos
+    # no metodo `push_hadouken` FIXED
     if dist_hadouken < 170 and (@player.push_hadouken and @player2.push_hadouken)
+      # Toca a musica de explosao
       if @hadouken.hadouken_img and @hadouken2.hadouken_img
         @explosion.play
       end
+      # remove os 2 hadoukens
       @hadouken.die!
       @hadouken2.die!
     end
 
+    # Calcula a distancia entre os hadoukens e os jogadores
     hadouken_player = Gosu::distance(@hadouken2.center_x, @hadouken2.center_y,
                                      @player.player_x, @player.center_y)
     hadouken_player2 = Gosu::distance(@hadouken.center_x, @hadouken.center_y,
                                       @player2.player_x, @player2.center_y)
+    # Se um dos personagens for atingido, remove o jogador
     if hadouken_player < 170
       @player.die!
     end
@@ -84,6 +98,10 @@ class GameWindow < Gosu::Window
 
   def button_down id
     close if id == Gosu::KbEscape
+
+    # Se o um dos botoes for apertado, verifica se o existe
+    # um hadouken (se ele nao foi removido).
+    # Se o player estiver vivo, cria outro hadouken
     if button_down? Gosu::KbQ
       @hadouken.move_hadouken if @hadouken.hadouken_img
       if @player.down?

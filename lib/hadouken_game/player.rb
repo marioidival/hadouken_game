@@ -2,6 +2,9 @@ require 'gosu'
 
 class Player
   attr_accessor :character, :name, :player_x, :center_y, :player_image
+  # A classe player inicializa com 2 argumentos, o primeiro o parametro
+  # da Janela, e o segundo informa se o jogador criado e o player2
+  # ( segundo jogador )
 
   def initialize window = nil, is_second = false
     @character = choice_character
@@ -17,6 +20,8 @@ class Player
       @center_x = @window.width / 2
       @center_y = @window.height / 2
 
+      # Define qual lado o jogador vai estar, se ele for jogador 2
+      # ficara na esquerda, senao, direita.
       @player_x = @is_second ? @center_x + @player_image.width * 4 : @center_x - @player_image.width * 4
       @live = true
     end
@@ -24,6 +29,8 @@ class Player
   end
 
   def player2?
+    # Retorna True ou False, se o personagem
+    # e o segundo jogador
     @is_second
   end
 
@@ -56,6 +63,8 @@ class Player
   end
 
   def die!
+    # metodo para "matar" o jogador, define as variaveis para 0
+    # e retira a imagem do jogador da tela
     @center_y = 0
     @center_x = 0
     @player_x = 0
@@ -65,13 +74,16 @@ class Player
   end
 
   def down?
+    # Retorna True ou False se o jogador esta morto
     @live
   end
 
   # Gosu Methods
   def draw
-    @player_image.draw @player_x, @center_y, 1 unless player2?
+    # Se o personagem for o jogador 2, desenha a direita
     @player_image.draw @player_x, @center_y, 1, -1 if player2?
+    # Senao, a esquerda
+    @player_image.draw @player_x, @center_y, 1 unless player2?
   end
 
 end

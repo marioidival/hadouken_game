@@ -12,6 +12,8 @@ class Hadouken
       @center_y = @window.height / 2
       @mov = 130
 
+      # Define o valor X de cada hadouken, dependendo de onde o
+      # jogador estiver na tela
       @center_x = @player.player_x - @mov if @player.player2?
       @center_x = @player.player_x + @mov unless @player.player2?
     end
@@ -26,6 +28,7 @@ class Hadouken
       # right
       @hadouken_img.draw(@player.player_x + @mov, @center_y, 1) unless @player.player2?
 
+      # calcula novamente o valor de X
       @center_x = @player.player_x - @mov if @player.player2?
       @center_x = @player.player_x + @mov unless @player.player2?
     end
@@ -39,10 +42,10 @@ class Hadouken
       "marisa"=> 'hadouken_game/media/Hadouken/marisa_hadouken.png',
       "italo"=> 'hadouken_game/media/hadouken/italo_hadouken.png',
       "luciano"=> 'hadouken_game/media/hadouken/luciano_hadouken.png',
-      "julian"=> 'hadouken_game/media/julian.jpg',
       "eduardo"=> 'hadouken_game/media/hadouken/eduardo_hadouken.png',
       "debora"=> 'hadouken_game/media/hadouken/debora_hadouken.png',
       "wendel"=> 'hadouken_game/media/hadouken/wendell_hadouken.png',
+      "julian"=> 'hadouken_game/media/julian.jpg',
       "arisson"=> 'hadouken_game/media/arisson.png',
     }
     images[player_name]
