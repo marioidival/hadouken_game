@@ -19,6 +19,10 @@ class GameWindow < Gosu::Window
     @player = Player.new self
     @player2 = Player.new self, true
 
+    while @player.name == @player2.name
+      @player2 = Player.new self, true
+    end
+
     @hadouken = Hadouken.new self, @player
     @hadouken2 = Hadouken.new self, @player2
 
