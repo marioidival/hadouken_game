@@ -34,16 +34,16 @@ class Hadouken
   # Retorna imagem do hadouken do personagem passado por parametro
   def images_hadouken player_name
     images = {
-      "helen"=> 'hadouken_game/media/helen.jpg',
-      "mateus"=> 'hadouken_game/media/mateus.jpg',
+      "helen"=> 'hadouken_game/media/hadouken/helen_hadouken.png',
+      "mateus"=> 'hadouken_game/media/hadouken/mateus_hadouken.png',
+      "marisa"=> 'hadouken_game/media/Hadouken/marisa_hadouken.png',
+      "italo"=> 'hadouken_game/media/hadouken/italo_hadouken.png',
+      "luciano"=> 'hadouken_game/media/hadouken/luciano_hadouken.png',
       "julian"=> 'hadouken_game/media/julian.jpg',
-      "debora"=> 'hadouken_game/media/debora.jpg',
-      "luciano"=> 'hadouken_game/media/luciano.jpg',
-     # "marisa"=> '',
+      "eduardo"=> 'hadouken_game/media/hadouken/eduardo_hadouken.png',
+      "debora"=> 'hadouken_game/media/hadouken/debora_hadouken.png',
+      "wendel"=> 'hadouken_game/media/hadouken/wendell_hadouken.png',
      # "arisson"=> '',
-     # "italo"=> '',
-     # "eduardo"=> '',
-     # "wendel"=> '',
     }
     images[player_name]
   end
