@@ -43,7 +43,7 @@ class Hadouken
       "eduardo"=> 'hadouken_game/media/hadouken/eduardo_hadouken.png',
       "debora"=> 'hadouken_game/media/hadouken/debora_hadouken.png',
       "wendel"=> 'hadouken_game/media/hadouken/wendell_hadouken.png',
-     # "arisson"=> '',
+      "arisson"=> 'hadouken_game/media/arisson.png',
     }
     images[player_name]
   end
