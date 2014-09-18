@@ -28,8 +28,9 @@ class GameWindow < Gosu::Window
     @hadouken = Hadouken.new self, @player
     @hadouken2 = Hadouken.new self, @player2
 
-    @explosion = Gosu::Sample.new(self, 'hadouken_game/media/explosion.ogg')
-    @lose = Gosu::Sample.new(self, 'hadouken_game/media/julian_lose.mp3')
+    @explosion = Gosu::Sample.new self, 'hadouken_game/media/explosion.ogg'
+    @julian_lose = Gosu::Sample.new self, 'hadouken_game/media/julian_lose.mp3'
+    @arisson_lose = Gosu::Sample.new self, 'hadouken_game/media/arisson_lose.mp3'
     @font = Gosu::Font.new self, Gosu::default_font_name, 40
   end
 
@@ -61,7 +62,7 @@ class GameWindow < Gosu::Window
     end
 
     unless @player2.down?
-      if @player.name == "julian"
+      if @player2.name == "julian"
         @font.draw "GAME OVER Argentino", 350, 50, *@@format
       else
         @font.draw "GAME OVER player2", 350, 50, *@@format
@@ -98,12 +99,14 @@ class GameWindow < Gosu::Window
     # Se um dos personagens for atingido, remove o jogador
     if hadouken_player < 170
       @player.die!
-      @lose.play if @player.name == "julian"
+      @julian_lose.play if @player.name == "julian"
+      @arisson_lose.play if @player.name == "arisson"
     end
 
     if hadouken_player2 < 170
       @player2.die!
-      @lose.play if @player2.name == "julian"
+      @julian_lose.play if @player2.name == "julian"
+      @arisson_lose.play if @player2.name == "arisson"
     end
   end
 
